@@ -22,7 +22,7 @@ class ShoppingListViewsTests(TestCase):
 
     def test_home_shopping_list_is_populated(self):
         """
-        Test home page works successfully when the shopping list is populated
+        Test home page works successfully when the shopping list is populated.
         """
 
         create_shopping_list_item()
