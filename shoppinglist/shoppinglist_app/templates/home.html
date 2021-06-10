@@ -2,8 +2,20 @@
 
 {% block content %}
 
-<div class="container">
-    <p>Shopping list is empty.</p>
-</div>
+{% if items %}
+
+    <ul class="list-group">
+    {% for item in items %}
+        <li class="list-group-item">{{ item.item }}</li>
+    {% endfor %}
+    </ul>
+
+{% else %}
+
+    <div class="container">
+        <p>Shopping list is empty.</p>
+    </div>
+
+{% endif %}
 
 {% endblock %}
