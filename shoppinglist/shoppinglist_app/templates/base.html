@@ -12,16 +12,14 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
+    <nav class="navbar navbar-light bg-light">
+      <div class="container">
         <a class="navbar-brand" href="#">Shopping List</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <form class="d-flex" method="POST">
-            {% csrf_token %}
-            <input class="form-control me-2" type="search" placeholder="Add an item" aria-label="Add an item" name="item">
-            <button class="btn btn-outline-success" type="submit">Add</button>
-          </form>
-        </div>
+        <form class="d-flex" method="POST">
+          {% csrf_token %}
+          <input class="form-control me-2" type="search" placeholder="Add an item" aria-label="Add an item" name="item">
+          <button class="btn btn-outline-success" type="submit">Add</button>
+        </form>
       </div>
     </nav>
     

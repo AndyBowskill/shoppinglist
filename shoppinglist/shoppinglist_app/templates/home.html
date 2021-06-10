@@ -6,15 +6,16 @@
 
     <ul class="list-group">
     {% for item in items %}
-        <li class="list-group-item">{{ item.item }}</li>
+        <li class="list-group-item">
+            <p class="lead">{{ item.item }}</p>
+            <p><a href="{% url 'delete' item.id %}">Delete</a></p>
+        </li>
     {% endfor %}
     </ul>
 
 {% else %}
 
-    <div class="container">
-        <p>Shopping list is empty.</p>
-    </div>
+    <p>Shopping list is empty.</p>
 
 {% endif %}
 

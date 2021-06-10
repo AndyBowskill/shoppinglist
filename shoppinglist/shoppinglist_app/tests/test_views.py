@@ -7,7 +7,7 @@ from shoppinglist_app.models import ShoppingList
 
 
 def create_shopping_list_item():
-    ShoppingList.objects.create(item="Oranges.")
+    return ShoppingList.objects.create(item="Oranges.")
 
 
 class ShoppingListViewsTests(TestCase):
@@ -30,3 +30,15 @@ class ShoppingListViewsTests(TestCase):
         response = self.client.get(reverse("home"))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Oranges.")
+
+    def test_delete_shopping_list_item_is_deleted(self):
+        """
+        Test that the delete view deletes the valid shopping list item.
+        """
+
+        shopping_list_item = create_shopping_list_item()
+
+        response = self.client.post(
+            reverse("delete", args=(shopping_list_item.id,)), follow=True
+        )
+        self.assertEqual(response.status_code, 200)
