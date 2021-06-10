@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from shoppinglist_app.views import home
+from shoppinglist_app.views import home, delete
 
 from shoppinglist_app.models import ShoppingList
 

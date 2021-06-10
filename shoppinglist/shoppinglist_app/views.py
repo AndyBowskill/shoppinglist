@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from .models import ShoppingList
 from .forms import ShoppingListForm
 
+from .api.tesco_api import TescoAPI
+
 
 def home(request):
 
@@ -21,5 +23,18 @@ def delete(request, item_id):
 
     item = ShoppingList.objects.get(pk=item_id)
     item.delete()
+
+    return redirect("home")
+
+
+def price(request, item_id):
+
+    item = ShoppingList.objects.get(pk=item_id)
+
+    tesco = TescoAPI()
+    price = tesco.get_item_price(item)
+
+    item.price = price
+    item.save()
 
     return redirect("home")
