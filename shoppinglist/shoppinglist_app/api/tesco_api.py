@@ -8,16 +8,14 @@ class TescoAPI:
     """
 
     response = ""
-
-    def __init__(self):
-        self.APIKey = "fb3bbf71931c4ad8b75c6a0688ef7d88"
+    api_key = "fb3bbf71931c4ad8b75c6a0688ef7d88"
 
     def get_request(self, item):
         """
         Make a request to Tesco API for an item.
         """
 
-        headers = {"Ocp-Apim-Subscription-Key": self.APIKey}
+        headers = {"Ocp-Apim-Subscription-Key": self.api_key}
 
         params = {
             "query": item,
