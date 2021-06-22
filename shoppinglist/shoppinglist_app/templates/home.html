@@ -9,6 +9,7 @@
         <li class="list-group-item">
             <p class="lead">{{ item.item }} - &pound;{{ item.price }}</p>
             <p><a href="{% url 'price' item.id %}">Get Price From Tesco</a></p>
+            
             <p><a href="{% url 'delete' item.id %}">Delete</a></p>
         </li>
     {% endfor %}

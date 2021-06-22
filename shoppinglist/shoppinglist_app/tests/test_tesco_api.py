@@ -1,15 +1,21 @@
+import httpretty
+
 from django.test import TestCase
 
 from shoppinglist_app.api.tesco_api import TescoAPI
 
 
 class TescoAPIClientTests(TestCase):
-    def test_get_item_price_when_tesco_found_item(self):
-        """
-        Test get item price when the item is found in Tesco.
-        """
+    @httpretty.activate
+    def test_get_request_is_successful(self):
+
+        httpretty.register_uri(
+            method=httpretty.GET,
+            uri="https://dev.tescolabs.com/grocery/products/",
+            status=200,
+        )
 
         tesco = TescoAPI()
-        price = tesco.get_item_price("tofu")
+        response = tesco.get_request("tofu")
 
-        self.assertEquals(price, 2.00)
+        self.assertEqual(response.status_code, 200)

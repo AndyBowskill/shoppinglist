@@ -32,7 +32,7 @@ def price(request, item_id):
     item = ShoppingList.objects.get(pk=item_id)
 
     tesco = TescoAPI()
-    price = tesco.get_item_price(item)
+    price = tesco.get_item_price(item.item)
 
     item.price = price
     item.save()
