@@ -46,3 +46,11 @@ class ShoppingListModelTests(TestCase):
 
         decimal_places = self.shoppinglist_item._meta.get_field("price").decimal_places
         self.assertEquals(decimal_places, 2)
+
+    def test_check_default(self):
+        """
+        Test the shopping list item check default
+        """
+
+        default_check = self.shoppinglist_item._meta.get_field("check").default
+        self.assertEquals(default_check, False)

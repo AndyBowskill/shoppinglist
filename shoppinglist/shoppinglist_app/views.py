@@ -38,3 +38,13 @@ def price(request, item_id):
     item.save()
 
     return redirect("home")
+
+
+def check(request, item_id):
+
+    item = ShoppingList.objects.get(pk=item_id)
+
+    item.check = not item.check
+    item.save()
+
+    return redirect("home")

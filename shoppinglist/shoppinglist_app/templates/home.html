@@ -6,11 +6,11 @@
 
     <ul class="list-group">
     {% for item in items %}
-        <li class="list-group-item">
+        <li class="list-group-item {% if item.check == True %} checked {% endif %} " >
             <p class="lead">{{ item.item }} - &pound;{{ item.price }}</p>
-            <p><a href="{% url 'price' item.id %}">Get Price From Tesco</a></p>
-            
-            <p><a href="{% url 'delete' item.id %}">Delete</a></p>
+            <p><a href="{% url 'check' item.id %}">{% if item.check %}Uncheck{% else %}Check{% endif %}</a>
+            | <a href="{% url 'price' item.id %}">Get Price</a>
+            | <a href="{% url 'delete' item.id %}">Delete</a></p>
         </li>
     {% endfor %}
     </ul>

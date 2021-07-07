@@ -64,3 +64,19 @@ class ShoppingListViewsTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
         self.assertEqual(ShoppingList.objects.count(), 0)
+
+    def test_shopping_list_item_is_checked(self):
+        """
+        Test that the check view checked the valid shopping list item.
+        """
+
+        shopping_list_item = create_shopping_list_item()
+
+        response = self.client.get(
+            reverse("check", args=(shopping_list_item.id,)), follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+
+        shopping_list_item_after = ShoppingList.objects.get(pk=shopping_list_item.id)
+
+        self.assertEqual(shopping_list_item_after.check, True)
