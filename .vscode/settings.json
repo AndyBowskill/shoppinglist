@@ -3,9 +3,9 @@
     "python.testing.unittestArgs": [
         "-v",
         "-s",
-        ".",
+        "./shoppinglist",
         "-p",
-        "test*.py"
+        "test_*.py"
     ],
     "python.testing.pytestEnabled": false,
     "python.testing.nosetestsEnabled": false,

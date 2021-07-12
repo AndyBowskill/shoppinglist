@@ -17,6 +17,7 @@ class ShoppingListViewsTests(TestCase):
         """
 
         response = self.client.get(reverse("home"))
+        
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Shopping list is empty.")
 
@@ -28,6 +29,7 @@ class ShoppingListViewsTests(TestCase):
         create_shopping_list_item()
 
         response = self.client.get(reverse("home"))
+
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Oranges.")
 
@@ -37,8 +39,8 @@ class ShoppingListViewsTests(TestCase):
         """
 
         response = self.client.post(reverse("home"), data={"item": "Bananas"})
+        
         self.assertEqual(response.status_code, 200)
-
         self.assertEqual(ShoppingList.objects.count(), 1)
 
     def test_create_shopping_list_item_is_not_created(self):
@@ -47,8 +49,8 @@ class ShoppingListViewsTests(TestCase):
         """
 
         response = self.client.post(reverse("home"), data={"item": ""})
+        
         self.assertEqual(response.status_code, 200)
-
         self.assertEqual(ShoppingList.objects.count(), 0)
 
     def test_delete_shopping_list_item_is_deleted(self):
@@ -58,11 +60,11 @@ class ShoppingListViewsTests(TestCase):
 
         shopping_list_item = create_shopping_list_item()
 
-        response = self.client.post(
+        response = self.client.get(
             reverse("delete", args=(shopping_list_item.id,)), follow=True
         )
-        self.assertEqual(response.status_code, 200)
 
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(ShoppingList.objects.count(), 0)
 
     def test_shopping_list_item_is_checked(self):
@@ -75,6 +77,7 @@ class ShoppingListViewsTests(TestCase):
         response = self.client.get(
             reverse("check", args=(shopping_list_item.id,)), follow=True
         )
+
         self.assertEqual(response.status_code, 200)
 
         shopping_list_item_after = ShoppingList.objects.get(pk=shopping_list_item.id)
